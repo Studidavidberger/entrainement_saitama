@@ -1,23 +1,28 @@
-/*
-entrainement Saitama
-01) Creer tous les types de varialbes et en faire du Pixassso
-02) Creer 3 bloc d'instruction, qui renvoie une seed
-03) creer des test conditonnels, pour chaque caractere de la seed si elle match, enregistrer.
-04) Creer des ID a chaque nombre de la seed
-05) faire du compact-code JS
+const btn_math = document.getElementById('btn_math');
+const textarea2 = document.getElementById('textarea2');
 
-exo :
-Creer une fonction qui exporte une texte en chiffrement base32 or
+const chk1 = document.getElementById('checkbox_01');
+const chk2 = document.getElementById('checkbox_02');
+const chk3 = document.getElementById('checkbox_03');
+const chk4 = document.getElementById('checkbox_04');
+const chk5 = document.getElementById('checkbox_05');
 
-exemple copact code
- */
-let a = document.getElementById('btn').innerText;
-if (a>=10) let port=0;else let port=6.9;
+chk1.addEventListener('change', function () {
+    textarea = document.getElementById('textarea').value;
+    textarea2.value = "chk1";
+    
+    const getSHA256Hash = async (textarea) => {
+        const textAsBuffer = new TextEncoder().encode(textarea);
+        const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hash = hashArray
+            .map((item) => item.toString(16).padStart(2, "0"))
+            .join("");
+        textarea2.value = hash;
+        return hash;
+    };
+})
 
-const message = "Ceci est le message secret !"
-
-function ft_crypto(message) {
-    const encryptedmessage = cryptoJS.AES.encrypt(message, "fuck you").toString();
-    print("math1", message, encryptedmessage)
-    document.getElementById('output').innerHTML = encryptedmessage;
-}
+chk2.addEventListener('change', function () {
+    textarea2.value = "chk2"
+})
